@@ -1,5 +1,6 @@
 <div class="container mt-4">
   <app-search-form-hero
+  (updateSearchForm)="filterSuperheroes($event)"
   (addNewHero)="addOrEdit()"></app-search-form-hero>
   @if (superheroList.length > 0) {
     <app-search-table-hero

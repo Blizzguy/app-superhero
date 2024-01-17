@@ -3,6 +3,7 @@ import {SuperheroService} from "../../../services/superhero/superhero.service";
 import {SuperheroInterface} from "../../../interfaces/superhero.interface";
 import { MatDialog } from '@angular/material/dialog';
 import { SearchTableHeroComponent } from './search-table-hero/search-table-hero.component';
+import { SuperheroSearchParams } from '../../../interfaces/superhero-search-params.interface';
 
 @Component({
   selector: 'app-hero-filter',
@@ -58,6 +59,10 @@ export class HeroFilterComponent implements OnInit {
     this.heroService.delete(id).subscribe((result: SuperheroInterface) => {
       this.superheroList = this.superheroList.filter((superhero: SuperheroInterface) => superhero.id !== id);
     });
+  }
+
+  filterSuperheroes(superheroSearchParams: SuperheroSearchParams): void {
+    this.superheroList = this.heroService.filter(superheroSearchParams, this.superheroList);
   }
 
 }
