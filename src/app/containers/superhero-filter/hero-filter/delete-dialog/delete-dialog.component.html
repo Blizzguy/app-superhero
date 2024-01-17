@@ -1,0 +1,13 @@
+<h2 mat-dialog-title>Borrar superheroe</h2>
+<mat-dialog-content class='custom-dialog'>
+    <p>¿Estás seguro de que quieres borrar a {{superhero}}?</p>
+    <p>Esta acción no se puede deshacer.</p>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <div class='col-12'>
+        <button mat-button (click)='confirm()'
+                class='btn btn-main pull-right'>Borrar</button>
+        <button mat-button mat-dialog-close
+                class='btn btn-secondary secondButton pull-right mr-2'>Volver al listado</button>
+    </div>
+</mat-dialog-actions>

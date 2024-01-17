@@ -1,0 +1,16 @@
+<div class="container mt-4">
+  <app-search-form-hero
+  (addNewHero)="addOrEdit()"></app-search-form-hero>
+  @if (superheroList.length > 0) {
+    <app-search-table-hero
+    [superheroList]="superheroList"
+    (editSuperhero)="addOrEdit($event)"
+    (deleteSuperhero)="deleteSuperhero($event)"
+    >
+    </app-search-table-hero>
+  } @else {
+    <div class="alert alert-danger" role="alert">
+      No se encontraron resultados
+    </div>
+  }
+</div>

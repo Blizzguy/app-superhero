@@ -1,0 +1,40 @@
+{
+  "response":[
+    {
+      "id": "1",
+      "name": "Bruce",
+      "superheroName": "Batman",
+      "power": "Rich"
+    },
+    {
+      "id": "2",
+      "name": "Clark",
+      "superheroName": "Superman",
+      "power": "Fly"
+    },
+    {
+      "id": "3",
+      "name": "Peter",
+      "superheroName": "Spiderman",
+      "power": "Spider"
+    },
+    {
+      "id": "4",
+      "name": "Tony",
+      "superheroName": "Ironman",
+      "power": "Rich"
+    },
+    {
+      "id": "5",
+      "name": "Diana",
+      "superheroName": "Wonder Woman",
+      "power": "Strength"
+    },
+    {
+      "id": "6",
+      "name": "Barry",
+      "superheroName": "The Flash",
+      "power": "Super Speed"
+    }
+  ]
+}
