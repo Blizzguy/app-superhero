@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {SuperheroService} from "./services/superhero/superhero.service";
-import { HttpClientModule } from '@angular/common/http';
-import { AddOrEditDialogComponent } from './containers/superhero-filter/hero-filter/add-or-edit-dialog/add-or-edit-dialog.component';
-import { DeleteDialogComponent } from './containers/superhero-filter/hero-filter/delete-dialog/delete-dialog.component';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { LoadingInterceptor } from './services/interceptros/httploadingInterceptor';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -19,7 +19,7 @@ import { DeleteDialogComponent } from './containers/superhero-filter/hero-filter
     BrowserAnimationsModule,
     HttpClientModule
   ],
-  providers: [SuperheroService],
+  providers: [SuperheroService, { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

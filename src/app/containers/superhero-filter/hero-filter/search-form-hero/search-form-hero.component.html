@@ -2,19 +2,22 @@
   <div class="form-group">
     <mat-form-field class="w-100">
       <mat-label>Id</mat-label>
-      <input type="text" matInput class="form-control" formControlName="id">
+      <input matInput formControlName="id">
     </mat-form-field>
   </div>
 
   <div class="form-group">
     <mat-form-field class="w-100">
       <mat-label>SuperHero Name</mat-label>
-      <input type="text" matInput class="form-control" formControlName="superheroname">
+      <input matInput formControlName="superheroname">
     </mat-form-field>
   </div>
 
   <div class="top-border pt-3">
-    <button mat-raised-button color="primary" class="me-2" (click)="setSearchFormDefaultValues()">
+    <button mat-raised-button color="primary" class="me-2" (click)="search()">
+      Filtrar resultados
+    </button>
+    <button mat-raised-button color="warn" class="me-2" (click)="setSearchFormDefaultValues()">
       Limpiar formulario
     </button>
     <button mat-raised-button color="accent" (click)="addHero()">

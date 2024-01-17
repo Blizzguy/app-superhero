@@ -1,7 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { AddOrEditDialogComponent } from './add-or-edit-dialog.component';
+import { SuperheroInterface } from '../../../../interfaces/superhero.interface';
 
 describe('AddOrEditDialogComponent', () => {
   let component: AddOrEditDialogComponent;
@@ -13,10 +14,12 @@ describe('AddOrEditDialogComponent', () => {
       providers: [
         { provide: MAT_DIALOG_DATA, useValue: {} },
         { provide: MatDialogRef, useValue: {} },
-        FormBuilder
-      ]
+        FormBuilder,
+      ],
     }).compileComponents();
-    
+  });
+
+  beforeEach(() => {
     fixture = TestBed.createComponent(AddOrEditDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -30,14 +33,11 @@ describe('AddOrEditDialogComponent', () => {
     expect(component.form).toBeInstanceOf(FormGroup);
   });
 
-  it('should set addOrEdit property', () => {
-    expect(component.addOrEdit).toBeUndefined();
-    component.isNew = true;
+  it('should set addOrEdit to "edit" when superhero is not null', () => {
+    const superhero: SuperheroInterface = { id: 1, name: 'Superman', superheroName: 'Superman', power: 'Flight' };
+    component.superhero = superhero;
     component.ngOnInit();
-    expect(component.addOrEdit).toBe('Add');
-    component.isNew = false;
-    component.ngOnInit();
-    expect(component.addOrEdit).toBe('Edit');
+    expect(component.addOrEdit).toBe('edit');
   });
 
   it('should call confirm method and close dialog', () => {
@@ -47,3 +47,4 @@ describe('AddOrEditDialogComponent', () => {
     expect(dialogRef.close).toHaveBeenCalled();
   });
 });
+

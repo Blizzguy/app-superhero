@@ -1,4 +1,4 @@
 export interface SuperheroSearchParams {
     id?: number;
-    superheroname?: string;
+    superheroname: string;
 }

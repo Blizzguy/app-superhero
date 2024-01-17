@@ -1,6 +1,6 @@
 import { Component, Inject, Input } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { SuperheroInterface } from '../../../../interfaces/superhero.interface';
 
 @Component({
@@ -15,23 +15,23 @@ export class AddOrEditDialogComponent {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public superhero: SuperheroInterface,
-    @Inject(MAT_DIALOG_DATA) public isNew: boolean,
     private readonly formBuilder: FormBuilder,
     private readonly dialogRef: MatDialogRef<AddOrEditDialogComponent>
   ) {}
 
   ngOnInit(): void {
-    this.addOrEdit = this.isNew ? 'Add' : 'Edit';
+    this.addOrEdit = this.superhero.isNew ? 'Crear' : 'Editar';
     this.form = this.formBuilder.group({
-      name: new FormControl(null),
-      superheroName: new FormControl(null),
-      power: new FormControl(null),
+      id: new FormControl(null),
+      name: new FormControl(null, Validators.required),
+      superheroName: new FormControl(null, Validators.required),
+      power: new FormControl(null, Validators.required),
     });
     this.isEdit();
   }
 
   isEdit(): void {
-    if (!this.isNew) {
+    if (!this.superhero.isNew) {
       this.form.patchValue(this.superhero);
     }
   }

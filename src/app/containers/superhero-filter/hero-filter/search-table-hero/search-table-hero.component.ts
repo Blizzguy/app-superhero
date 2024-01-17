@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   Component,
   EventEmitter,
   Input,
@@ -16,7 +17,7 @@ import { SuperheroInterface } from '../../../../interfaces/superhero.interface';
   templateUrl: './search-table-hero.component.html',
   styleUrl: './search-table-hero.component.scss',
 })
-export class SearchTableHeroComponent implements OnInit, OnChanges {
+export class SearchTableHeroComponent implements AfterViewInit, OnChanges {
   @Input() superheroList: SuperheroInterface[];
   @Output() deleteSuperhero: EventEmitter<number> = new EventEmitter<number>();
   @Output() editSuperhero: EventEmitter<number> = new EventEmitter<number>();
@@ -39,10 +40,10 @@ export class SearchTableHeroComponent implements OnInit, OnChanges {
     this.editSuperhero.emit(id);
   }
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.dataSource = new MatTableDataSource(this.superheroList);
-    this.dataSource.paginator = this.paginator;
     this.length = this.superheroList.length;
+    this.dataSource.paginator = this.paginator;
   }
 
   ngOnChanges(): void {

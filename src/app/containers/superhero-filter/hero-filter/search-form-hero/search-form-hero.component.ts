@@ -1,5 +1,5 @@
 import {Component, EventEmitter, OnChanges, OnInit, Output} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import { SuperheroSearchParams } from '../../../../interfaces/superhero-search-params.interface';
 
 @Component({
@@ -7,7 +7,7 @@ import { SuperheroSearchParams } from '../../../../interfaces/superhero-search-p
   templateUrl: './search-form-hero.component.html',
   styleUrl: './search-form-hero.component.scss'
 })
-export class SearchFormHeroComponent implements OnInit, OnChanges {
+export class SearchFormHeroComponent implements OnInit {
 
   @Output() addNewHero: EventEmitter<any> = new EventEmitter<any>();
   @Output() updateSearchForm: EventEmitter<SuperheroSearchParams> = new EventEmitter<SuperheroSearchParams>();
@@ -22,15 +22,16 @@ export class SearchFormHeroComponent implements OnInit, OnChanges {
 
   buildDefaultSearchForm(): FormGroup {
     return this.formBuilder.group({
-      id: new FormControl(null),
+      id: new FormControl(null, Validators.pattern('^[0-9]+$')),
       superheroname: new FormControl(null)
     });
   }
 
-  ngOnChanges(): void {
-    this.updateSearchForm.emit(this.searchForm.value);
+  search(): void {
+    if (this.searchForm.valid) {
+      this.updateSearchForm.emit(this.searchForm.value);
+    }
   }
-
   setSearchFormDefaultValues(): void {
     this.searchForm = this.buildDefaultSearchForm();
   }

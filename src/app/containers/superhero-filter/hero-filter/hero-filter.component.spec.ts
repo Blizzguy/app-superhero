@@ -65,7 +65,7 @@ describe('HeroFilterComponent', () => {
     const superheroId = 1;
     component.deleteSuperhero(superheroId);
 
-    expect(superheroService.delete).toHaveBeenCalledWith(superheroId);
+    expect(superheroService.delete).toHaveBeenCalledWith(superheroId, component.superheroList);
   });
 
   it('should filter superheroes', () => {

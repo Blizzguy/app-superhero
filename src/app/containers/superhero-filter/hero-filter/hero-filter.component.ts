@@ -4,6 +4,8 @@ import {SuperheroInterface} from "../../../interfaces/superhero.interface";
 import { MatDialog } from '@angular/material/dialog';
 import { SearchTableHeroComponent } from './search-table-hero/search-table-hero.component';
 import { SuperheroSearchParams } from '../../../interfaces/superhero-search-params.interface';
+import { AddOrEditDialogComponent } from './add-or-edit-dialog/add-or-edit-dialog.component';
+import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 
 @Component({
   selector: 'app-hero-filter',
@@ -14,10 +16,12 @@ export class HeroFilterComponent implements OnInit {
   constructor(private readonly heroService: SuperheroService, private readonly dialog: MatDialog) {}
 
   superheroList: SuperheroInterface[];
+  baseHeroList: SuperheroInterface[];
 
   ngOnInit(): void {
     this.heroService.search().subscribe((superheroList: SuperheroInterface[]) => {
       this.superheroList = superheroList;
+      this.baseHeroList = superheroList;
     });
   }
 
@@ -26,43 +30,50 @@ export class HeroFilterComponent implements OnInit {
   }
 
   updateSuperhero(superheroId: number): void {
-    //const superhero = this.superheroList.find((superhero: SuperheroInterface) => superhero.id === superheroId);
-    const hero = this.heroService.searchFromId(superheroId);
-    const dialogRef = this.dialog.open(SearchTableHeroComponent, {
-      data: { superhero: hero, isNew: false },
-      width: '500px',
-      height: 'auto'
+    //const hero = this.heroService.searchFromId(superheroId);
+    const hero = this.superheroList.find((superhero: SuperheroInterface) => superhero.id === superheroId);
+    const dialogRef = this.dialog.open(AddOrEditDialogComponent, {
+      data: { ...hero, isNew: false }
     });
 
     dialogRef.afterClosed().subscribe((result: SuperheroInterface) => {
       if (result) {
-        this.heroService.update(result, this.superheroList);
+        this.superheroList = [...this.heroService.update(result, this.superheroList)];
+        this.baseHeroList = this.superheroList;
       }
     });
   }
 
   addSuperhero(): void {
-    const dialogRef = this.dialog.open(SearchTableHeroComponent, {
-      data: { superhero: {}, isNew: true },
-      width: '500px',
-      height: 'auto'
+    const dialogRef = this.dialog.open(AddOrEditDialogComponent, {
+      data: {isNew: true}
     });
 
     dialogRef.afterClosed().subscribe((result: SuperheroInterface) => {
       if (result) {
-        this.heroService.add(result, this.superheroList);
+        this.superheroList = [...this.heroService.add(result, this.superheroList)];
+        this.baseHeroList = this.superheroList;
       }
     });
   }
 
-  deleteSuperhero(id: number): void {
-    this.heroService.delete(id).subscribe((result: SuperheroInterface) => {
-      this.superheroList = this.superheroList.filter((superhero: SuperheroInterface) => superhero.id !== id);
+  deleteSuperhero(id: number){
+    const hero = this.superheroList.find((superhero: SuperheroInterface) => superhero.id === id);
+    const dialogRef = this.dialog.open(DeleteDialogComponent, {
+      data: hero ? hero.superheroName : null
     });
+
+    dialogRef.afterClosed().subscribe((result: boolean) => {
+      if (result) {
+        this.superheroList = [...this.heroService.delete(id, this.superheroList)];
+        this.baseHeroList = this.superheroList;
+      }
+    });
+
   }
 
   filterSuperheroes(superheroSearchParams: SuperheroSearchParams): void {
-    this.superheroList = this.heroService.filter(superheroSearchParams, this.superheroList);
+    this.superheroList = [...this.heroService.filter(superheroSearchParams, this.baseHeroList)];
   }
 
 }

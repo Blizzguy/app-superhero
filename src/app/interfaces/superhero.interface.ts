@@ -4,4 +4,5 @@ export interface SuperheroInterface {
   name: string;
   superheroName: string;
   power: string;
+  isNew?: boolean;
 }

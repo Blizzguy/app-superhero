@@ -44,7 +44,7 @@ describe('SearchTableHeroComponent', () => {
       { id: 2, name: 'Batman', superheroName: 'Bruce Wayne', power: 'Rich' },
     ];
     component.superheroList = superheroList;
-    component.ngOnInit();
+    component.ngAfterViewInit();
     expect(component.dataSource).toEqual(new MatTableDataSource<SuperheroInterface>(superheroList));
   });
 
@@ -56,7 +56,7 @@ describe('SearchTableHeroComponent', () => {
       { id: 2, name: 'Batman', superheroName: 'Bruce Wayne', power: 'Rich' },
     ];
     component.superheroList = superheroList1;
-    component.ngOnInit();
+    component.ngAfterViewInit();
     expect(component.dataSource).toEqual(new MatTableDataSource<SuperheroInterface>(superheroList1));
 
     component.superheroList = superheroList2;
