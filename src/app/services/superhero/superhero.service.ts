@@ -23,20 +23,20 @@ export class SuperheroService {
     let filteredList: SuperheroInterface[] = [];
 
     if (params.id) {
-      // Filtrar por id
+      // Filter by id
       for (let i = 0; i < herolist.length; i++) {
         if (params.id && herolist[i].id === params.id) {
           filteredList.push(herolist[i]);
         }
       }
 
-      // Si no se encontraron resultados por id, devolver array vacío
+      // If no results found by id, return empty array
       if (filteredList.length === 0) {
         return [];
       }
     }
 
-    // Filtrar por nombre
+    // Filter by superhero name
     if (params.superheroname) {
       filteredList = filteredList.filter((superhero: SuperheroInterface) => {
         return superhero.superheroName.includes(params.superheroname ?? '');

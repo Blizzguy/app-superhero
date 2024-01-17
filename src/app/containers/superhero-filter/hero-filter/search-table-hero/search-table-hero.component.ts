@@ -40,8 +40,9 @@ export class SearchTableHeroComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    console.log('superheroList', this.superheroList);
-    this.pageSize = 5;
+    this.dataSource = new MatTableDataSource(this.superheroList);
+    this.dataSource.paginator = this.paginator;
+    this.length = this.superheroList.length;
   }
 
   ngOnChanges(): void {
