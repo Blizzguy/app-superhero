@@ -41,14 +41,19 @@ export class SearchTableHeroComponent implements AfterViewInit, OnChanges {
   }
 
   ngAfterViewInit(): void {
-    this.dataSource = new MatTableDataSource(this.superheroList);
-    this.length = this.superheroList.length;
-    this.dataSource.paginator = this.paginator;
+    this.setTable();
   }
 
   ngOnChanges(): void {
-    this.dataSource = new MatTableDataSource(this.superheroList);
-    this.dataSource.paginator = this.paginator;
-    this.length = this.superheroList.length;
+    this.setTable();
+  }
+
+  setTable(): void {
+    if (this.superheroList) {
+      this.dataSource = new MatTableDataSource(this.superheroList);
+      this.length = this.superheroList.length;
+      this.dataSource.paginator = this.paginator;
+    }
+    
   }
 }

@@ -3,37 +3,37 @@
     {
       "id": "1",
       "name": "Bruce",
-      "superheroName": "Batman",
+      "superheroName": "BATMAN",
       "power": "Rich"
     },
     {
       "id": "2",
       "name": "Clark",
-      "superheroName": "Superman",
+      "superheroName": "SUPERMAN",
       "power": "Fly"
     },
     {
       "id": "3",
       "name": "Peter",
-      "superheroName": "Spiderman",
+      "superheroName": "SPIDERMAN",
       "power": "Spider"
     },
     {
       "id": "4",
       "name": "Tony",
-      "superheroName": "Ironman",
+      "superheroName": "IRONMAN",
       "power": "Rich"
     },
     {
       "id": "5",
       "name": "Diana",
-      "superheroName": "Wonder Woman",
+      "superheroName": "WONDER WOMAN",
       "power": "Strength"
     },
     {
       "id": "6",
       "name": "Barry",
-      "superheroName": "The Flash",
+      "superheroName": "THE FLASH",
       "power": "Super Speed"
     }
   ]

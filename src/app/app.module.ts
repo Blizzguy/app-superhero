@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {SuperheroService} from "./services/superhero/superhero.service";
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { LoadingInterceptor } from './services/interceptros/httploadingInterceptor';
+import { LoadingInterceptor } from './services/interceptors/httploadingInterceptor';
 import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({

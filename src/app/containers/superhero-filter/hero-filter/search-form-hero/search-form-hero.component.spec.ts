@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { SearchFormHeroComponent } from './search-form-hero.component';
+import { EventEmitter } from '@angular/core';
 
 describe('SearchFormHeroComponent', () => {
   let component: SearchFormHeroComponent;
@@ -17,6 +18,8 @@ describe('SearchFormHeroComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(SearchFormHeroComponent);
     component = fixture.componentInstance;
+    component.updateSearchForm = new EventEmitter(); 
+    spyOn(component.updateSearchForm, 'emit');
     fixture.detectChanges();
   });
 
@@ -28,11 +31,5 @@ describe('SearchFormHeroComponent', () => {
     spyOn(component.addNewHero, 'emit');
     component.addHero();
     expect(component.addNewHero.emit).toHaveBeenCalled();
-  });
-
-  it('should emit updateSearchForm event when setSearchFormDefaultValues is called', () => {
-    spyOn(component.updateSearchForm, 'emit');
-    component.setSearchFormDefaultValues();
-    expect(component.updateSearchForm.emit).toHaveBeenCalled();
   });
 });

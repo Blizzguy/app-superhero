@@ -1,13 +1,14 @@
 <div class="container mt-4">
   <app-search-form-hero
-  (updateSearchForm)="filterSuperheroes($event)"
-  (addNewHero)="addOrEdit()"></app-search-form-hero>
+    (updateSearchForm)="filterSuperheroes($event)"
+    (addNewHero)="addOrEdit()"
+  ></app-search-form-hero>
   @if (superheroList) {
-    <app-search-table-hero
+  <app-search-table-hero
     [superheroList]="superheroList"
     (editSuperhero)="addOrEdit($event)"
     (deleteSuperhero)="deleteSuperhero($event)"
-    >
-    </app-search-table-hero>
+  >
+  </app-search-table-hero>
   }
 </div>

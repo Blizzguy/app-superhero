@@ -1,12 +1,17 @@
-import { Component, Inject, Input } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, Inject } from '@angular/core';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { SuperheroInterface } from '../../../../interfaces/superhero.interface';
 
 @Component({
   selector: 'app-add-or-edit-dialog',
   templateUrl: './add-or-edit-dialog.component.html',
-  styleUrl: './add-or-edit-dialog.component.scss'
+  styleUrl: './add-or-edit-dialog.component.scss',
 })
 export class AddOrEditDialogComponent {
   addOrEdit: string;
@@ -37,7 +42,10 @@ export class AddOrEditDialogComponent {
   }
 
   confirm(): void {
-    this.form.valid && this.dialogRef.close(this.form.value);
+    if (this.form.valid) {
+      const formValue = this.form.value;
+      formValue.superheroName = formValue.superheroName.toUpperCase();
+      this.dialogRef.close(formValue);
+    }
   }
-
 }

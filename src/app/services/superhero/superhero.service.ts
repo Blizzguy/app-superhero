@@ -12,7 +12,6 @@ export class SuperheroService {
 
   readonly apiUrl = 'http://localhost:3000';
 
-
   search(): Observable<SuperheroInterface[]> {
     return this.http.get<SuperheroInterface[]>(`${this.apiUrl}/response`);
   }
@@ -37,11 +36,13 @@ export class SuperheroService {
     // Filter by superhero name
     if (params.superheroname && params.superheroname !== '') {
       filteredList = herolist.filter((superhero: SuperheroInterface) => {
-        return superhero.superheroName.toLowerCase().includes(params.superheroname.toLowerCase());
+        return superhero.superheroName
+          .toLowerCase()
+          .includes(params.superheroname.toLowerCase());
       });
     }
 
-    if(filteredList.length === 0){
+    if (filteredList.length === 0) {
       return herolist;
     }
 
@@ -52,8 +53,13 @@ export class SuperheroService {
     return this.http.get<SuperheroInterface>(`${this.apiUrl}/response/${id}`);
   }
 
-  delete(id: number, superheroList: SuperheroInterface[]): SuperheroInterface[] {
-    return superheroList.filter((superhero: SuperheroInterface) => superhero.id !== id);
+  delete(
+    id: number,
+    superheroList: SuperheroInterface[]
+  ): SuperheroInterface[] {
+    return superheroList.filter(
+      (superhero: SuperheroInterface) => superhero.id !== id
+    );
   }
 
   update(

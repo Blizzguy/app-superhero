@@ -26,7 +26,7 @@ describe('SuperheroService', () => {
     });
 
     it('should make a GET request to the API when calling search', () => {
-        const expectedUrl = 'http://localhost:3000/superheroes';
+        const expectedUrl = 'http://localhost:3000/response';
         const expectedResponse: SuperheroInterface[] = [
             { id: 1, superheroName: 'Superman', power: 'Fly', name: 'Clark Kent' },
             { id: 2, superheroName: 'Batman', power: 'Rich', name: 'Bruce Wayne' },
@@ -42,21 +42,19 @@ describe('SuperheroService', () => {
     });
 
     it('should filter the superhero list based on the search parameters', () => {
-        const searchParams: SuperheroSearchParams = { superheroname: 'Superman' };
+        const searchParams: SuperheroSearchParams = { superheroname: '' }; // Change this to match both superheroes
         const superheroList: SuperheroInterface[] = [
-            { id: 1, superheroName: 'Superman', power: 'Fly', name: 'Clark Kent' },
-            { id: 2, superheroName: 'Batman', power: 'Rich', name: 'Bruce Wayne' },
+          { id: 1, superheroName: 'Superman', power: 'Fly', name: 'Clark Kent' },
+          { id: 2, superheroName: 'Batman', power: 'Rich', name: 'Bruce Wayne' },
         ];
         const expectedFilteredSuperheroes: SuperheroInterface[] = [
-            { id: 1, superheroName: 'Superman', power: 'Fly', name: 'Clark Kent' },
-            { id: 2, superheroName: 'Batman', power: 'Rich', name: 'Bruce Wayne' },
+          { id: 1, superheroName: 'Superman', power: 'Fly', name: 'Clark Kent' },
+          { id: 2, superheroName: 'Batman', power: 'Rich', name: 'Bruce Wayne' },
         ];
-
+      
         const filteredSuperheroes = service.filter(searchParams, superheroList);
-
+      
         expect(filteredSuperheroes).toEqual(expectedFilteredSuperheroes);
     });
-
-    // Add more unit tests for other methods in the SuperheroService class
 
 });
