@@ -1,27 +1,34 @@
-# AppSuperhero
+# Superhero Filter Application
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.10.
+This is a web application that allows you to filter superheroes based on their ID and name. You can also perform various operations such as creating, editing, and removing superheroes.
 
-## Development server
+## Technologies Used
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- Angular Material: Used to build tablets and inputs for the user interface.
 
-## Code scaffolding
+## Installation
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+1. Clone the repository: `git clone https://github.com/your-username/app-superhero.git`
+2. Navigate to the project directory: `cd app-superhero`
+3. Install the dependencies: `npm install`
 
-## Build
+## Usage
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+1. Start the application: `ng serve`
+2. Open your browser and navigate to `http://localhost:4200`
 
-## Running unit tests
+## Features
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- Filter superheroes by ID and name
+- Create new superheroes
+- Edit existing superheroes
+- Remove superheroes
 
-## Running end-to-end tests
+## Contributing
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Contributions are welcome! If you have any suggestions or improvements, please create a pull request.
 
-## Further help
+## License
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+This project is licensed under the [MIT License](LICENSE).
+
